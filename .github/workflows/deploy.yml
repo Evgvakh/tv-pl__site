@@ -36,3 +36,11 @@ jobs:
       #       docker load < /opt/tv_pl-app.tar
       #       cd /opt/tv_pl
       #       docker-compose up -d 
+      - name: 🧠 Проверка SSH-доступа (dry run)
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            echo "✅ SSH-соединение установлено, всё работает!"
