@@ -9,5 +9,7 @@ jobs:
   deploy: 
     runs-on: ubuntu-latest
 
-
+    steps:
+      - name: repo clone
+        uses: actions/checkout@v3
 
