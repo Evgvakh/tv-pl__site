@@ -1,0 +1,37 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="Arial, sans-serif" />
+      <mj-text font-size="16px" line-height="1.5" color="#55575d" />
+      <mj-button background-color="#1a82e2" color="#ffffff" font-size="16px" />
+    </mj-attributes>
+    <mj-style inline="inline"> .footer-text { font-size: 12px; color: #999999; } </mj-style>
+  </mj-head>
+  <mj-body background-color="#f4f4f4">
+    <!-- Основной раздел с контентом -->
+    <mj-section background-color="#ffffff" padding="20px">
+      <mj-column>
+        <mj-text><img alt="" src="https://res.cloudinary.com/dnvl2jic7/image/upload/v1743104761/logo-blue_ttriob.jpg" style="height: 32px; width: 128px" /></mj-text>
+        <mj-divider border-color="#cccccc" padding="10px 0" />
+        <!-- Приветствие и основное сообщение -->
+        <mj-text padding-top="20px"> Здравствуйте, </mj-text>
+        <mj-text> Сообщаем вам, что ваш запланированный визит {{old_date}} {{old_time}} перенесен на новую дату и время. Просим обратить внимание на обновлённые данные: </mj-text>
+        <mj-text font-weight="bold" font-size="20px" padding="5px 0"> Новая дата и время: {{date}} {{time}} </mj-text>
+        <mj-text>
+          Если у вас возникли вопросы или требуется дополнительная информация, пожалуйста, позвоните нам. Если вам не подходит назначенное время или дата, перенесите ваш визит на более удобное для вас время в нашем телеграм-приложении.
+        </mj-text>
+        <!-- Кнопка для связи -->
+        <mj-button href="tel:+1234567890" padding-top="10px"> Позвонить нам </mj-button>
+        <mj-button href="t.me/tvt_planning_bot" padding-top="5px"> Телеграм-бот </mj-button>
+        <mj-text padding-top="20px" font-size="12px"> С уважением,<br /> </mj-text>
+        <mj-text><img alt="" src="https://res.cloudinary.com/dnvl2jic7/image/upload/v1743104761/logo-blue_ttriob.jpg" style="height: 42px; width: 168px" /></mj-text>
+      </mj-column>
+    </mj-section>
+    <!-- Футер -->
+    <mj-section background-color="#ffffff" padding="10px">
+      <mj-column>
+        <mj-text align="center" css-class="footer-text" font-size="10px"> © 2024 Нейростудия Татьяны Тикуновой. Все права защищены. </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

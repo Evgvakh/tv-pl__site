@@ -1,0 +1,23 @@
+services:
+  app:
+    image: tv_pl-app:latest
+    ports:
+      - "5051:5051"
+    env_file:
+      - ./back/.env
+    environment:
+      - NODE_ENV=production      
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db    
+
+volumes:
+  mongo-data:
