@@ -26,13 +26,13 @@ jobs:
           key: ${{secrets.VPS_KEY}}
           source: "tv_pl-app.tar"
           target: "/opt"
-      - name: Run docker-compose on VPS
-        uses: appleboy/ssh-action@v1.0.0
-        with: 
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_KEY }}
-          script: |
-            docker load < /opt/tv_pl-app.tar
-            cd /opt/tv_pl
-            docker-compose up -d 
+      # - name: Run docker-compose on VPS
+      #   uses: appleboy/ssh-action@v1.0.0
+      #   with: 
+      #     host: ${{ secrets.VPS_HOST }}
+      #     username: ${{ secrets.VPS_USER }}
+      #     key: ${{ secrets.VPS_KEY }}
+      #     script: |
+      #       docker load < /opt/tv_pl-app.tar
+      #       cd /opt/tv_pl
+      #       docker-compose up -d 
