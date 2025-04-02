@@ -1,5 +1,8 @@
 services:
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: tv_pl-app:latest
     ports:
       - "5051:5051"
