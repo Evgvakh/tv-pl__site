@@ -33,7 +33,10 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
           script: |
+            mkdir -p /opt/tv_pl/back
             docker load < /opt/tv_pl-app.tar
+            echo "${{ secrets.ENV_FILE }}" > /opt/tv_pl/back/.env
+            echo "${{ secrets.COMPOSE_FILE }}" > /opt/tv_pl/docker-compose.yml
             cd /opt/tv_pl
             docker-compose up -d --remove-orphans
       # - name: Check SSH-access (dry run)
