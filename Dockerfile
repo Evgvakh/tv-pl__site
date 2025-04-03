@@ -6,7 +6,7 @@ COPY front/package*.json ./front/
 
 RUN cd front && npm ci
 
-COPY front front
+COPY front/ ./front
 
 RUN cd front && npm run build
 
@@ -17,7 +17,7 @@ WORKDIR /app
 COPY back/package*.json ./back/
 RUN cd back && npm ci
 
-COPY back app/back/
+COPY back/ ./back/
 
 COPY --from=builder /app/front/dist /app/back/public
 
