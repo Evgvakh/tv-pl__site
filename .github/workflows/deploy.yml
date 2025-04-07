@@ -26,6 +26,21 @@ jobs:
           key: ${{secrets.VPS_KEY}}
           source: "tv_pl-app.tar"
           target: "/opt"
+      - name: Ensure /opt/tv_pl directory exists
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: mkdir -p /opt/tv_pl/back
+      - name: Copy docker-compose.yml to VPS
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          source: "docker-compose.yml"
+          target: "/opt/tv_pl/"  
       - name: Run docker-compose on VPS
         uses: appleboy/ssh-action@v1.0.0
         with: 
@@ -35,8 +50,7 @@ jobs:
           script: |
             mkdir -p /opt/tv_pl/back
             docker load < /opt/tv_pl-app.tar
-            echo "${{ secrets.ENV_FILE }}" > /opt/tv_pl/back/.env
-            echo "${{ secrets.COMPOSE_FILE }}" > /opt/tv_pl/docker-compose.yml
+            echo "${{ secrets.ENV_FILE }}" > /opt/tv_pl/back/.env            
             cd /opt/tv_pl
             docker-compose up -d 
       # - name: Check SSH-access (dry run)
