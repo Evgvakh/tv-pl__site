@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.AUTH_EMAIL_PASSWORD
     },
 }, {
-    from: `Татьяна Викторовна <${process.env.AUTH_EMAIL_SENDER}>`,
+    from: `Нейростудия Татьяны Тикуновой <${process.env.AUTH_EMAIL_SENDER}>`,
 });
 
 const mailer = (message, res) => {
