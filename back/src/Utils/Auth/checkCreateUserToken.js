@@ -4,7 +4,7 @@ import User from '../../DB/Models/User.js'
 export const checkCreateUserToken = async (req, res) => {
     try {
         console.log(req.body.token, req.body.id)
-        const token = req.headers.authorization
+        const token = req.body.token
         if (!token) {
             res.status(401).json({ isAuthOK: false })
         }        

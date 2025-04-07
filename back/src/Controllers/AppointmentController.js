@@ -76,7 +76,7 @@ export const addAppointmentCommentary = async (req, res) => {
         )
         res.status(201).send(data)
     } catch (err) {
-        console.log(err)
+        console.log(err.message)
         res.status(500).send({ errorMessage: err.message, data: null })
     }
 }
@@ -100,14 +100,12 @@ export const rescheduleAppointment = async (req, res) => {
         if (isNotificationNeeded) {            
             const formatedDate = formatDateDDMMYY(date)
             sendRescheduleAppointmentMail(req, res, { email, formatedDate, time, old_date, old_time })
-        }
-        console.log(apptType)
+        }       
         if (apptType === 'first') {            
             const addToFirstAppt = await Appointment.findOne({ date: initialAppt.date, time: oldEmptyApptTime })
             if (!addToFirstAppt) {
                 throw new Error('No such appontment/Нет такого визита')
-            }
-            console.log(addToFirstAppt)
+            }            
             var { data: data2 } = await Appointment.updateOne(
                 { _id: addToFirstAppt._id },
                 {
@@ -196,7 +194,7 @@ export const getApptsByClientID = async (req, res) => {
         
         if (data.length > 0) { res.status(200).send(data) } else {throw new Error('Nothing found/Ничего не найдено')}
     } catch (err) {
-        console.log(err.message)
+        console.log(err)
         res.status(500).send({ errorMessage: err.message, data: null })
     }
 }

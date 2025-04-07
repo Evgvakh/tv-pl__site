@@ -1,5 +1,4 @@
 import User from "../DB/Models/User.js";
-import generatePassword from 'generate-password'
 import bcrypt from 'bcrypt'
 import { sendCreateAccountMail, sendResetPasswordLink } from "../Utils/Mailers/mailer.js";
 import generateToken from "../Utils/Auth/generateToken.js";

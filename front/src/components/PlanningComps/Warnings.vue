@@ -153,16 +153,16 @@ export default {
 
 .warnings-body__content-item__appts-item {
     width: 100%;
-    display: flex; align-items: center;
-    gap: 5px;
-    padding: 0.3em;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2px;
+    padding: 0.2em;
     background-color: rgba(212, 212, 212, 0.63);
     p {
         text-transform: capitalize;
-        font-size: 12px;
+        font-size: 11px;
     }    
     .appts-item__name {
-        width: 34%;
+        width: 26%;
         font-size: 13px;
         font-weight: 700;
     }
@@ -173,10 +173,11 @@ export default {
         width: 12%;
     }
     button {
-        font-size: 12px;
+        font-size: 11px;
         display: block;
-        margin-left: auto;
-        padding: 0.1em 0.5em;        
+        /* margin-right: auto; */
+        justify-self: flex-end;
+        padding: 0.1em 0.4em;        
     }
 }
 

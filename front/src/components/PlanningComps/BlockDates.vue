@@ -55,7 +55,7 @@ export default {
     border-radius: 3px;
     button {
         padding: 0.5em 0.8em;
-        margin-top: 0.4em;
+        margin-block: 0.6em 0.2em;
         font-size: 10px;
         text-transform: uppercase;
         line-height: 0.8em;

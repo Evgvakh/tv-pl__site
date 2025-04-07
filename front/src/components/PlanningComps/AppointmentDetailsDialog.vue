@@ -230,11 +230,12 @@ h2 {
 
 .dialog-content__body-item__item {
     background-color: rgb(243, 245, 237);
-    padding: 0.3em 0.5em;
+    padding: 0.2em 0.4em 0.1em 0.4em;
     border-radius: 20px;
     text-align: center;
     border: 2px solid rgb(47, 56, 60);
     text-transform: capitalize;
+    font-size: 14px;
 }
 
 .client__item {
@@ -399,9 +400,9 @@ h2 {
     gap: 1em;
     justify-content: space-between;
     margin-bottom: 0.5em;
-
+    font-size: 14px;
     button {
-        padding: 0.3em 1em;
+        padding: 0.3em 1.5em;
     }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="planning__main-container" v-if="!isLoading">
-        <aside class="planning__menu-main elevation-3">
+        <aside class="planning__menu-main elevation-2">
             <div class="planning__menu-main__container">
                 <DateFilter :disabledDates="formatDisabledDates" />
                 <BlockDates :disabledDates="formatDisabledDates" />
@@ -200,16 +200,16 @@ export default {
 .planning__main-container {
     position: relative;
     display: flex;
-    gap: 10px;
+    gap: 5px;
     max-height: 94vh;
     min-height: 94vh;
-    padding: 0.5em;
+    padding: 0.2em;
     background-color: #5d758b21;
     overflow-y: auto;
 }
 
 .planning__menu-main {
-    width: 16vw;
+    width: 17vw;
     padding: 0.4em;
     background-color: rgba(218, 253, 227, 0.641);
     border-radius: 10px;
@@ -217,19 +217,19 @@ export default {
     height: 90vh;
 
     @media (max-width: 1700px) {
-        width: 17vw;
-    }
-
-    @media (max-width: 1600px) {
-        width: 18vw;
-    }
-
-    @media (max-width: 1400px) {
         width: 19vw;
     }
 
-    @media (max-width: 1270px) {
+    @media (max-width: 1600px) {
+        width: 20vw;
+    }
+
+    @media (max-width: 1400px) {
         width: 21vw;
+    }
+
+    @media (max-width: 1270px) {
+        width: 23vw;
     }
 }
 
@@ -246,19 +246,19 @@ export default {
     border: 2px solid rgba(46, 27, 116, 0.199);
 
     @media (max-width: 1700px) {
-        width: 82vw;
-    }
-
-    @media (max-width: 1600px) {
-        width: 81vw;
-    }
-
-    @media (max-width: 1400px) {
         width: 80vw;
     }
 
-    @media (max-width: 1270px) {
+    @media (max-width: 1600px) {
+        width: 79vw;
+    }
+
+    @media (max-width: 1400px) {
         width: 78vw;
+    }
+
+    @media (max-width: 1270px) {
+        width: 75vw;
     }
 }
 

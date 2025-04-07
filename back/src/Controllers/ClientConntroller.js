@@ -81,11 +81,12 @@ export const addClientCommentary = async (req, res) => {
 
 export const editClientField = async (req, res) => {
     try {
-        const allowedFields = ["name", "phone", "age", "email"]
+        const allowedFields = ["name", "phone", "age", "email", "userID"]
         const { id, field, value } = req.body
         if (!allowedFields.includes(field)) {
             throw new Error('Поле не существует / Field is not existing')
         }
+        console.log()
         const data = await Client.updateOne(
             { _id: id },
             {[field]: value}
@@ -93,7 +94,7 @@ export const editClientField = async (req, res) => {
         if (data.modifiedCount > 0) {
             res.status(201).send({message: 'Успешно обновлено / Update success'})
         } else {
-            res.status(200).send({message: 'OK' })
+            res.status(200).send({message: 'Обновление не удалось / Update failed' })
         }
     } catch (err) {
         console.log(err)

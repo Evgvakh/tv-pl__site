@@ -13,8 +13,7 @@
                     <div class="add-client__content-item__header">
                         <h4>Эл. почта</h4>
                     </div>
-                    <input type="email" placeholder="Введите email" v-model="email"
-                        @update:model-value="console.log('test')"
+                    <input type="email" placeholder="Введите email" v-model="email"                       
                         :class="['add-client__content-item__input', !isValidEmail ? 'not-valid' : '']">
                 </div>
                 <div class="add-client__content-item">
@@ -29,7 +28,7 @@
                     <div class="add-client__content-item__header">
                         <h4>Возраст</h4>
                     </div>
-                    <input type="number" placeholder="Возраст" v-model="age" @update:model-value="console.log('test')"
+                    <input type="number" placeholder="Возраст" v-model="age"
                         :class="['add-client__content-item__input', !isValidPhone ? 'not-valid' : '']">
                 </div>
             </div>
@@ -54,6 +53,7 @@
 <script>
 import { mapActions } from 'vuex/dist/vuex.cjs.js';
 import axios from '../../../axios';
+import { mapState } from 'vuex';
 export default {
     props: {
         clientName: String
@@ -81,16 +81,31 @@ export default {
             return data.data
         },
         async addClientFunc() {            
-            const data = await axios.post('/client/add', {
+            const {data} = await axios.post('/client/add', {
                 name: this.name,
                 ...(this.email && { email: this.email }),
                 ...(this.phone && { phone: this.phone }),
                 ...(this.clientCommentary && { commentary: this.clientCommentary }),
-                ...(this.age && { age: this.age }),
+                ...(this.age && { age: this.age })                
             })
             console.log(data)
-            if (data.data.client && this.$route.params.clientName) {
-                await this.addNewClientIdToExistingAppts(data.data.client.name, data.data.client._id)
+            if (this.isCreatingUser) {
+                const url = this.env === 'development' ? window.location.origin : 'https://neurostudio-tvt.site'
+                const { data: user } = await axios.post('/user/add', {
+                    email: this.email,
+                    role: 'user',
+                    url: url
+                })
+                console.log({addedUser: user})
+                const addedUserId = await axios.patch('/client/edit-one-field', {
+                    id: data.client._id,
+                    field: 'userID',
+                    value: user.userData._id
+                }) 
+                console.log({modifiedClient: addedUserId})
+            }
+            if (data.client && this.$route.params.clientName) {
+                await this.addNewClientIdToExistingAppts(data.client.name, data.client._id)
                 this.$router.push('/planning')
             } else { await this.getClients() }
         },
@@ -110,9 +125,12 @@ export default {
         },
         isButtonDisabled() {
             return this.isValidEmail && this.isValidPhone && this.name ? false : true
-        }
+        },
+        ...mapState({
+            env: state => state.misc.env
+        })
     },
-    mounted() {
+    created() {
         if (this.clientName) {
             this.name = this.clientName
         }

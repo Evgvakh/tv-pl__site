@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
 import Header from './components/Header.vue';
 import { useWebApp } from 'vue-tg';
 export default {
@@ -22,17 +23,26 @@ export default {
       userAgent: null
     }
   },
+  methods: {
+    ...mapMutations({
+      setEnv: 'misc/setEnv'
+    })    
+  },
   computed: {
     isBlockedHeader() {
       const segments = this.$route.path.split('/').filter(Boolean)
       return segments.includes('telegram') || segments.includes('reset-password') || segments.includes('no-page')  ? true : false
-    }
+    },
+    ...mapState({
+      env: state => state.misc.env      
+    })
   },
   created() {
     const tg = useWebApp()
     tg.ready()
     this.userAgent = tg.isActive
     console.log(window.location.origin)
+    this.setEnv(import.meta.env.MODE) 
   }
 }
 </script>

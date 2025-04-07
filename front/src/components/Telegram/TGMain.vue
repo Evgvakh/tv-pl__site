@@ -59,6 +59,10 @@ export default {
         async sendPassword() {
             try {
                 if (this.isMatchingAlert || !this.email) { return }
+                const baseUrl = import.meta.env.MODE === 'production'
+                    ? 'https://neurostudio-tvt.site'
+                    : window.location.origin;
+                
                 const { data } = await axios.post('/user/add', {
                     email: this.email,
                     role: 'user',
@@ -109,6 +113,7 @@ export default {
         } else {
             console.error('Telegram WebApp API недоступен.');
         }
+        console.log(import.meta.env.MODE)
     }
 }
 </script>
