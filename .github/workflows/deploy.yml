@@ -38,7 +38,7 @@ jobs:
             echo "${{ secrets.ENV_FILE }}" > /opt/tv_pl/back/.env
             echo "${{ secrets.COMPOSE_FILE }}" > /opt/tv_pl/docker-compose.yml
             cd /opt/tv_pl
-            docker-compose up -d --remove-orphans
+            docker-compose up -d 
       # - name: Check SSH-access (dry run)
       #   uses: appleboy/ssh-action@v1.0.0
       #   with:
