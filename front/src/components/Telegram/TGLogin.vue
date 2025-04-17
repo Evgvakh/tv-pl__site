@@ -119,10 +119,12 @@ export default {
         }
     }
     opacity: 0;
+    height: 0;
     transition: all 0.5s ease;
 }
 
 .wrong-data.visible {
+    height: auto;
     opacity: 1;
 }
 .tg-login__header {
