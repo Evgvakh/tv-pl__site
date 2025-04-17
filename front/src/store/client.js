@@ -36,12 +36,12 @@ export const clientModule = {
     actions: {
         async getClients({ commit }) {
             const data = await axios.get('/clients/get')
-            console.log(data.data)
+            console.log({clients: data.data})
             commit('setClients', data.data)
         },
         async getUsers({ commit }) {
             const data = await axios.get('/user/get-all-users')
-            console.log(data.data)
+            console.log({usrs: data.data})
             commit('setUsers', data.data)
         },
         async getOneUser({ commit }, id) {

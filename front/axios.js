@@ -1,17 +1,17 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: import.meta.env.MODE === 'production'
-       ? 'https://neurostudio-tvt.site' :
-         'http://localhost:5051/'
-})
+// const instance = axios.create({
+//   baseURL: import.meta.env.MODE === 'production'
+//        ? 'https://neurostudio-tvt.site' :
+//          'http://localhost:5051/'
+// })
 // const baseUrl = import.meta.env.MODE === 'production'
 //   ? 'https://neurostudio-tvt.site'
 //   : window.location.origin;
 
-// const instance = axios.create({
-//   baseURL: baseUrl, 
-// });
+const instance = axios.create({
+  baseURL: 'https://neurostudio-tvt.site',
+});
 
 instance.interceptors.request.use((config) => {
   config.headers.Authorization = localStorage.getItem('tvPlanToken');
